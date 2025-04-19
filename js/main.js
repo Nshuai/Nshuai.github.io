@@ -282,6 +282,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const currentTop = window.scrollY || document.documentElement.scrollTop
         const isDown = scrollDirection(currentTop)
         if (currentTop > 56) {
+          $header.classList.add('is-top-bar')
           if (isDown) {
             if ($header.classList.contains('nav-visible')) $header.classList.remove('nav-visible')
             if (isChatBtnShow && isChatShow === true) {
@@ -301,7 +302,8 @@ document.addEventListener('DOMContentLoaded', function () {
           }
         } else {
           if (currentTop === 0) {
-            $header.classList.remove('nav-fixed', 'nav-visible')
+// -             $header.classList.remove('nav-fixed', 'nav-visible')
+            $header.classList.remove('is-top-bar')
           }
           $rightside.style.cssText = "opacity: ''; transform: ''"
         }
@@ -753,6 +755,7 @@ document.addEventListener('DOMContentLoaded', function () {
       GLOBAL_CONFIG.runtime && addRuntime()
       addLastPushDate()
       toggleCardCategory()
+      setCategoryBarActive() 
     }
 
     scrollFnToDo()
@@ -775,4 +778,25 @@ document.addEventListener('DOMContentLoaded', function () {
 
   refreshFn()
   unRefreshFn()
+  /**
+   * 自己写的，实现功能切换类别表
+   */ 
+  const setCategoryBarActive = () => {
+    const categoryBar = document.querySelector("#category-bar");
+    const currentPath = decodeURIComponent(window.location.pathname);
+    const isHomePage = currentPath === GLOBAL_CONFIG.root;
+
+    if (categoryBar) {
+        const categoryItems = categoryBar.querySelectorAll(".category-bar-item");
+        categoryItems.forEach(item => item.classList.remove("select"));
+
+        const activeItemId = isHomePage ? "category-bar-home" : currentPath.split("/").slice(-2, -1)[0];
+        const activeItem = document.getElementById(activeItemId);
+
+        if (activeItem) {
+            activeItem.classList.add("select");
+        }
+    }
+  };
+
 })
