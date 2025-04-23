@@ -1,0 +1,661 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>系统将github.com错误解析到本地地址&amp;修复DNS劫持 | Ψ(￣∀￣)ΨZHX的小窝</title><meta name="keywords" content="git"><meta name="author" content="ZXH"><meta name="copyright" content="ZXH"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="解决connect to host github.com port 22: Connection refused问题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="系统将github.com错误解析到本地地址&amp;修复DNS劫持">
+<meta property="og:url" content="http://example.com/2025/04/23/github%20DNS%E5%8A%AB%E6%8C%81/index.html">
+<meta property="og:site_name" content="Ψ(￣∀￣)ΨZHX的小窝">
+<meta property="og:description" content="解决connect to host github.com port 22: Connection refused问题">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/image/cover_img/18.jfif">
+<meta property="article:published_time" content="2025-04-22T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-04-23T12:19:43.498Z">
+<meta property="article:author" content="ZXH">
+<meta property="article:tag" content="git">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/image/cover_img/18.jfif"><link rel="shortcut icon" href="/./image/favicon.jpg"><link rel="canonical" href="http://example.com/2025/04/23/github%20DNS%E5%8A%AB%E6%8C%81/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":250},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '系统将github.com错误解析到本地地址&修复DNS劫持',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-04-23 20:19:43'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/nav_menu.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/categoryBar.css"><link rel="stylesheet" href="/css/heoMainColor.css"><!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+
+<link rel="stylesheet" href="/css/recommend.css?v=1.1.2.css">
+<link rel="stylesheet" href="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu@1.0.6/lib/clock.min.css" /><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.2.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/./image/top_img/avater.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">14</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-terminal"></i><span> 技术栈</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/C%E8%AF%AD%E8%A8%80/"><i class="fa-fw fas fa-brands fa-cuttlefish"></i><span> C语言</span></a></li><li><a class="site-page child" href="/categories/python/"><i class="fa-fw fas fa-brands fa-python"></i><span> python</span></a></li><li><a class="site-page child" href="/categories/web%E5%89%8D%E7%AB%AF/"><i class="fa-fw fas fa-computer"></i><span> web前端</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-book"></i><span> 考研</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/"><i class="fa-fw fas fa-calculator"></i><span> 高等数学</span></a></li><li><a class="site-page child" href="/categories/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/"><i class="fa-fw fas fa-line-chart"></i><span> 线性代数</span></a></li><li><a class="site-page child" href="/categories/%E6%A6%82%E7%8E%87%E8%AE%BA/"><i class="fa-fw fas fa-percent"></i><span> 概率论</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/categories/%E6%8A%98%E8%85%BE/"><i class="fa-fw fa-solid fa-screwdriver-wrench"></i><span> 折腾</span></a></div><div class="menus_item"><a class="site-page" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"><i class="fa-fw fas fa-archive"></i><span> 读书笔记</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 链接列表</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/./image/cover_img/18.jfif')"><nav id="nav"><span id="blog_name"><div class="back-home-button" tabindex="-1"><i class="back-home-button-icon fas fa-grip-vertical"></i><div class="back-menu-list-groups"><div class="back-menu-list-group"><div class="back-menu-list-title">网页</div><div class="back-menu-list"><a class="back-menu-item" href="/" title="前往博客主页" target="_blank" one-link-mark="yes"><img class="back-menu-item-icon" src="https://img02.anheyu.com/adminuploads/1/2022/09/05/6315ec9737ac4.png"/><span class="back-menu-item-text">博客</span></a><a class="back-menu-item" href="https://space.bilibili.com/29107627/favlist?fid=3373013327&amp;ftype=create" rel="external nofollow" title="前往B站主页" target="_blank" one-link-mark="yes"><img class="back-menu-item-icon" src="https://www.bilibili.com/favicon.ico"/><span class="back-menu-item-text">B站主页</span></a></div></div></div></div><a id="site-name" href="/"><div class="title">Ψ(￣∀￣)ΨZHX的小窝</div><i class="fa-solid fa-house"></i></a></span><div class="mask-name-container"><center id="name-container"><a id="page-name" href="javascript:rmf.scrollToTop()">PAGE_NAME</a></center></div><div id="menus"><div class="nav-button" id="darkmode_navswitch"><a class="darkmode_switchbutton" type="button" title="浅色和深色模式转换" onclick="rmf.switchDarkMode()"><i class="fas fa-adjust"></i></a></div><div class="nav-button" id="nav-totop"><a class="totopbtn"><i class="fas fa-arrow-up"></i><span id="percent" onclick="btf.scrollToDest(0,500)">0</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-terminal"></i><span> 技术栈</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/C%E8%AF%AD%E8%A8%80/"><i class="fa-fw fas fa-brands fa-cuttlefish"></i><span> C语言</span></a></li><li><a class="site-page child" href="/categories/python/"><i class="fa-fw fas fa-brands fa-python"></i><span> python</span></a></li><li><a class="site-page child" href="/categories/web%E5%89%8D%E7%AB%AF/"><i class="fa-fw fas fa-computer"></i><span> web前端</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-book"></i><span> 考研</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/"><i class="fa-fw fas fa-calculator"></i><span> 高等数学</span></a></li><li><a class="site-page child" href="/categories/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/"><i class="fa-fw fas fa-line-chart"></i><span> 线性代数</span></a></li><li><a class="site-page child" href="/categories/%E6%A6%82%E7%8E%87%E8%AE%BA/"><i class="fa-fw fas fa-percent"></i><span> 概率论</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/categories/%E6%8A%98%E8%85%BE/"><i class="fa-fw fa-solid fa-screwdriver-wrench"></i><span> 折腾</span></a></div><div class="menus_item"><a class="site-page" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"><i class="fa-fw fas fa-archive"></i><span> 读书笔记</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 链接列表</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">系统将github.com错误解析到本地地址&amp;修复DNS劫持</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-04-22T16:00:00.000Z" title="发表于 2025-04-23 00:00:00">2025-04-23</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-04-23T12:19:43.498Z" title="更新于 2025-04-23 20:19:43">2025-04-23</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%8A%98%E8%85%BE/">折腾</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="系统将github.com错误解析到本地地址&amp;修复DNS劫持"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="系统将github-com错误解析到本地地址-修复DNS劫持"><a href="#系统将github-com错误解析到本地地址-修复DNS劫持" class="headerlink" title="系统将github.com错误解析到本地地址&修复DNS劫持"></a>系统将github.com错误解析到本地地址&amp;修复DNS劫持</h1><p>在某天通过git连接github仓库的时候报错，并且已经验证github邮箱，用户名无误</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在通过git输出命令验证</span></span><br><span class="line">$ ssh -T git@github.com</span><br><span class="line">ssh: connect to host github.com port 22: Connection refused</span><br></pre></td></tr></table></figure>
+
+<p>出现连接被拒绝！以下是通过deepseek解决问题的步骤：</p>
+<p>具体解决流程如下</p>
+<h2 id="用户输入问题1："><a href="#用户输入问题1：" class="headerlink" title="用户输入问题1："></a>用户输入问题1：</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SUN@DESKTOP-GD2JGT5 MINGW64 ~/Desktop (master) $ ssh -T git@github.com ssh: connect to host github.com port 22: Connection refused</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="deepseek输出解决方案1："><a href="#deepseek输出解决方案1：" class="headerlink" title="deepseek输出解决方案1："></a>deepseek输出解决方案1：</h2><p>从你的情况来看，即使尝试了多种方法（切换网络、关闭防火墙、检查密钥），SSH 仍然无法连接 GitHub。问题可能出在 <strong>SSH 配置未生效</strong> 或 <strong>系统网络层限制</strong>。以下是更彻底的解决方案：</p>
+<hr>
+<p><strong>🔧 终极解决方案（分步执行）</strong></p>
+<p><strong>1. 强制 SSH 使用 HTTPS 端口（443）</strong></p>
+<p>你的 <code>~/.ssh/config</code> 文件可能未正确配置或未被加载。<br><strong>请严格按以下步骤操作</strong>：</p>
+<ol>
+<li><p><strong>完全删除旧配置</strong>（避免格式错误）：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">rm</span> ~/.ssh/config</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>重新创建配置文件</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">notepad ~/.ssh/config</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>粘贴以下内容（确保无多余空格）</strong>：</p>
+<p><code>plaintext</code></p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Host github.com</span><br><span class="line">    Hostname ssh.github.com</span><br><span class="line">    Port 443</span><br><span class="line">    User git</span><br><span class="line">    IdentityFile ~/.ssh/id_rsa</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>保存后测试</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure></li>
+</ol>
+<hr>
+<p><strong>2. 彻底重置 SSH 连接</strong></p>
+<p>有时 SSH 客户端会缓存旧设置，需要完全重置：</p>
+<ol>
+<li><p><strong>删除所有 SSH 缓存</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -R github.com</span><br><span class="line">ssh-keygen -R ssh.github.com</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>重启 SSH 服务</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">eval</span> $(ssh-agent -s)</span><br><span class="line">ssh-add ~/.ssh/id_rsa</span><br></pre></td></tr></table></figure></li>
+</ol>
+<hr>
+<p><strong>3. 使用 <code>ssh -vT</code> 调试并验证配置</strong></p>
+<p>运行以下命令查看详细错误：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -vT git@github.com</span><br></pre></td></tr></table></figure>
+
+<p><strong>重点关注以下行</strong>：</p>
+<ul>
+<li><code>Loaded config file "/c/Users/SUN/.ssh/config"</code> → 确认配置已加载。</li>
+<li><code>Connecting to ssh.github.com port 443...</code> → 确认走 443 端口。</li>
+<li><code>Authentications that can continue: publickey</code> → 确认尝试公钥认证。</li>
+</ul>
+<hr>
+<p><strong>4. 检查系统级网络限制</strong></p>
+<p>某些系统会完全禁用 SSH：</p>
+<ul>
+<li><p><strong>尝试 Telnet 测试端口</strong>（需启用 Telnet 客户端）：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">telnet ssh.github.com 443</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>如果显示 <code>Connected to ssh.github.com...</code>，说明端口可访问。</li>
+<li>如果显示 <code>Could not open connection</code>，说明系统/网络层完全阻止了连接。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p><strong>5. 临时改用 Git HTTPS</strong></p>
+<p>如果 SSH 仍失败，可临时切换至 HTTPS：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote set-url origin https://github.com/用户名/仓库名.git</span><br></pre></td></tr></table></figure>
+
+<p>推送时使用 <strong>GitHub 个人访问令牌（PAT）</strong> 作为密码。</p>
+<hr>
+<p><strong>🚨 如果所有方法均失败</strong></p>
+<p>可能是系统环境问题，建议：</p>
+<ol>
+<li><strong>重装 Git for Windows</strong>（安装时勾选 <em>Use OpenSSH</em>）。</li>
+<li><strong>在 WSL2 或虚拟机中测试 SSH</strong>，确认是否为 Windows 系统限制。</li>
+</ol>
+<hr>
+<p><strong>📌 最终验证</strong></p>
+<p>请提供以下命令的输出，我会帮你精准定位问题：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ssh -vT git@github.com</span><br><span class="line"><span class="built_in">cat</span> ~/.ssh/config</span><br><span class="line">ipconfig /all | grep <span class="string">"DNS Server"</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="用户反馈问题2："><a href="#用户反馈问题2：" class="headerlink" title="用户反馈问题2："></a>用户反馈问题2：</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">SUN@DESKTOP-GD2JGT5 MINGW64 ~/Desktop (master)</span><br><span class="line">$ ssh-keygen -R github.com</span><br><span class="line">ssh-keygen -R ssh.github.com</span><br><span class="line"><span class="comment"># Host github.com found: line 1</span></span><br><span class="line"><span class="comment"># Host github.com found: line 2</span></span><br><span class="line"><span class="comment"># Host github.com found: line 3</span></span><br><span class="line">/c/Users/SUN/.ssh/known_hosts updated.</span><br><span class="line">Original contents retained as /c/Users/SUN/.ssh/known_hosts.old</span><br><span class="line">Host ssh.github.com not found <span class="keyword">in</span> /c/Users/SUN/.ssh/known_hosts</span><br><span class="line"></span><br><span class="line">SUN@DESKTOP-GD2JGT5 MINGW64 ~/Desktop (master)</span><br><span class="line">$ <span class="built_in">eval</span> $(ssh-agent -s)</span><br><span class="line">ssh-add ~/.ssh/id_rsa</span><br><span class="line">Agent pid 1431</span><br><span class="line">Identity added: /c/Users/SUN/.ssh/id_rsa (1436552381@qq.com)</span><br><span class="line"></span><br><span class="line">SUN@DESKTOP-GD2JGT5 MINGW64 ~/Desktop (master)</span><br><span class="line">$ ssh -vT git@github.com</span><br><span class="line">OpenSSH_9.9p2, OpenSSL 3.2.4 11 Feb 2025</span><br><span class="line">debug1: Reading configuration data /etc/ssh/ssh_config</span><br><span class="line">debug1: Connecting to github.com [::1] port 22.</span><br><span class="line">debug1: connect to address ::1 port 22: Connection refused</span><br><span class="line">debug1: Connecting to github.com [127.0.0.1] port 22.</span><br><span class="line">debug1: connect to address 127.0.0.1 port 22: Connection refused</span><br><span class="line">ssh: connect to host github.com port 22: Connection refused</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="deepseek输出解决方案2："><a href="#deepseek输出解决方案2：" class="headerlink" title="deepseek输出解决方案2："></a>deepseek输出解决方案2：</h2><p>从你的 <code>ssh -vT git@github.com</code> 输出可以看出，SSH 正在尝试连接 <strong>本地地址（::1 和 127.0.0.1）</strong>，而不是 GitHub 的真实服务器地址。这说明你的系统存在 <strong>DNS 解析错误</strong> 或 <strong>Hosts 文件被篡改</strong>，导致 <code>github.com</code> 被错误解析到本机。</p>
+<hr>
+<p><strong>🚀 终极解决方案</strong></p>
+<p><strong>1. 检查并修复 Hosts 文件</strong></p>
+<p>某些软件（如加速器、VPN）可能会修改 Hosts 文件，将 GitHub 域名指向本地。<br><strong>操作步骤</strong>：</p>
+<ol>
+<li><p><strong>用管理员权限打开 Hosts 文件</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">notepad C:\Windows\System32\drivers\etc\hosts</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>删除所有包含 <code>github.com</code> 或 <code>ssh.github.com</code> 的行</strong>（如果有）。</p>
+</li>
+<li><p><strong>在文件末尾添加正确的 GitHub IP</strong>：</p>
+<p><code>plaintext</code></p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">140.82.121.36 ssh.github.com</span><br><span class="line">140.82.121.36 github.com</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>保存文件，然后刷新 DNS 缓存：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ipconfig /flushdns</span><br></pre></td></tr></table></figure></li>
+</ol>
+<hr>
+<p><strong>2. 验证 DNS 解析</strong></p>
+<p>运行以下命令，检查 <code>github.com</code> 是否解析到正确的 IP：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nslookup github.com</span><br><span class="line">nslookup ssh.github.com</span><br></pre></td></tr></table></figure>
+
+<p>正常应返回类似：</p>
+<p><code>plaintext</code></p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Non-authoritative answer:</span><br><span class="line">Name:    github.com</span><br><span class="line">Address:  140.82.121.36</span><br></pre></td></tr></table></figure>
+
+<p>如果仍显示 <code>::1</code> 或 <code>127.0.0.1</code>，说明 DNS 被劫持，需检查网络或 VPN 设置。</p>
+<hr>
+<p><strong>3. 强制 SSH 使用 HTTPS 端口（443）</strong></p>
+<p>即使修复 DNS，仍建议配置 SSH 走 443 端口以绕过可能的防火墙限制：</p>
+<ol>
+<li><p><strong>编辑 SSH 配置文件</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">notepad ~/.ssh/config</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>确保内容如下</strong>：</p>
+<p><code>plaintext</code></p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Host github.com</span><br><span class="line">    Hostname ssh.github.com</span><br><span class="line">    Port 443</span><br><span class="line">    User git</span><br><span class="line">    IdentityFile ~/.ssh/id_rsa</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>测试连接：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure></li>
+</ol>
+<hr>
+<p><strong>4. 检查系统代理设置</strong></p>
+<p>某些代理工具会劫持 SSH 流量：</p>
+<ol>
+<li><p><strong>清除 Git 代理配置</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global --<span class="built_in">unset</span> http.proxy</span><br><span class="line">git config --global --<span class="built_in">unset</span> https.proxy</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>检查环境变量</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">env</span> | grep -i proxy</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>如果有输出，临时取消代理：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">unset</span> HTTP_PROXY HTTPS_PROXY</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ol>
+<hr>
+<p><strong>5. 终极测试：直接连接 GitHub IP</strong></p>
+<p>绕过 DNS，直接用 IP 测试：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T -p 443 git@140.82.121.36</span><br></pre></td></tr></table></figure>
+
+<p>如果成功，说明问题纯粹是 DNS 解析错误。</p>
+<hr>
+<p><strong>🔍 结果分析</strong></p>
+<ul>
+<li>如果 <strong>修复 Hosts + 443 端口</strong> 后成功，问题根源是 <strong>DNS 被劫持</strong>。</li>
+<li>如果 <strong>直接连接 IP 成功</strong>，需检查本地网络或 VPN 设置。</li>
+<li>如果全部失败，可能是系统防火墙或安全软件拦截，尝试临时关闭 <strong>Windows Defender</strong> 或 <strong>第三方杀毒软件</strong>。</li>
+</ul>
+<hr>
+<p><strong>📌 最后一步</strong></p>
+<p>请提供以下信息帮助进一步诊断：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cat</span> C:\Windows\System32\drivers\etc\hosts</span><br><span class="line">nslookup github.com</span><br></pre></td></tr></table></figure>
+
+<h2 id="用户反馈问题3："><a href="#用户反馈问题3：" class="headerlink" title="用户反馈问题3："></a>用户反馈问题3：</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">SUN@DESKTOP-GD2JGT5 MINGW64 ~/Desktop (master)</span><br><span class="line">$ git config --global --<span class="built_in">unset</span> http.proxy</span><br><span class="line"></span><br><span class="line">SUN@DESKTOP-GD2JGT5 MINGW64 ~/Desktop (master)</span><br><span class="line">$ git config --global --<span class="built_in">unset</span> https.proxy</span><br><span class="line"></span><br><span class="line">SUN@DESKTOP-GD2JGT5 MINGW64 ~/Desktop (master)</span><br><span class="line">$ <span class="built_in">env</span> | grep -i proxy</span><br><span class="line"></span><br><span class="line">SUN@DESKTOP-GD2JGT5 MINGW64 ~/Desktop (master)</span><br><span class="line">$ ssh -T -p 443 git@140.82.121.36</span><br><span class="line">ssh: connect to host 140.82.121.36 port 443: Connection timed out</span><br><span class="line"></span><br><span class="line">SUN@DESKTOP-GD2JGT5 MINGW64 ~/Desktop (master)</span><br><span class="line">$ <span class="built_in">cat</span> C:\Windows\System32\drivers\etc\hosts</span><br><span class="line">nslookup github.com</span><br><span class="line"><span class="built_in">cat</span>: <span class="string">'C:WindowsSystem32driversetchosts'</span>: No such file or directory</span><br><span class="line">服务器:  UnKnown</span><br><span class="line">Address:  192.168.43.1</span><br><span class="line"></span><br><span class="line">名称:    github.com</span><br><span class="line">Addresses:  ::1</span><br><span class="line">          127.0.0.1</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="通过deepseek解析问题：你的系统将-github-com-错误解析到了本地地址（-1-和-127-0-0-1）"><a href="#通过deepseek解析问题：你的系统将-github-com-错误解析到了本地地址（-1-和-127-0-0-1）" class="headerlink" title="通过deepseek解析问题：你的系统将 github.com 错误解析到了本地地址（::1 和 127.0.0.1）"></a>通过deepseek解析问题：你的系统将 <code>github.com</code> 错误解析到了本地地址（::1 和 127.0.0.1）</h1><h2 id="deepseek输出解决方案4"><a href="#deepseek输出解决方案4" class="headerlink" title="deepseek输出解决方案4"></a>deepseek输出解决方案4</h2><p>从最新的测试结果来看，问题已经非常明确：<strong>你的系统将 <code>github.com</code> 错误解析到了本地地址（::1 和 127.0.0.1）</strong>，导致 SSH 无法连接到真正的 GitHub 服务器。以下是完整解决方案：</p>
+<hr>
+<p><strong>🔥 终极修复方案</strong></p>
+<p><strong>1. 强制修复 Hosts 文件（关键步骤）</strong></p>
+<p>你的系统无法找到 Hosts 文件（权限问题或路径错误），需要手动修复：</p>
+<ol>
+<li><p><strong>以管理员身份打开 CMD/PowerShell</strong>，执行：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">notepad C:\Windows\System32\drivers\etc\hosts</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>删除所有包含 <code>github.com</code> 的行（如果有）。</p>
+</li>
+<li><p>在文件末尾添加：</p>
+<p><code>plaintext</code></p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># GitHub SSH</span><br><span class="line">140.82.121.36 github.com</span><br><span class="line">140.82.121.36 ssh.github.com</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>保存文件（如果提示权限不足，请确保用管理员身份运行记事本）。</p>
+</li>
+</ol>
+<hr>
+<p><strong>2. 清除 DNS 缓存</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ipconfig /flushdns</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p><strong>3. 验证 DNS 解析</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nslookup github.com</span><br></pre></td></tr></table></figure>
+
+<p>正常应返回：</p>
+<p><code>plaintext</code></p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Addresses:  140.82.121.36</span><br></pre></td></tr></table></figure>
+
+<p>如果仍显示 <code>::1</code> 或 <code>127.0.0.1</code>，说明：</p>
+<ul>
+<li>你的网络运营商或路由器劫持了 DNS（常见于校园网/公司网络）。</li>
+<li>系统感染了恶意软件。</li>
+</ul>
+<hr>
+<p><strong>4. 使用备用 DNS 服务</strong></p>
+<p>临时改用 Google/Cloudflare 的公共 DNS：</p>
+<ol>
+<li><p><strong>打开网络设置</strong> → 更改适配器选项 → 右键当前网络 → 属性 → IPv4 → 手动设置 DNS：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">首选：8.8.8.8</span><br><span class="line">备用：1.1.1.1</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>重新运行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nslookup github.com</span><br></pre></td></tr></table></figure></li>
+</ol>
+<hr>
+<p><strong>5. 完全重置 SSH 连接</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 清除旧密钥</span></span><br><span class="line">ssh-keygen -R github.com</span><br><span class="line">ssh-keygen -R ssh.github.com</span><br><span class="line"></span><br><span class="line"><span class="comment"># 强制使用 443 端口</span></span><br><span class="line"><span class="built_in">echo</span> -e <span class="string">"Host github.com\n  Hostname ssh.github.com\n  Port 443\n  User git"</span> &gt; ~/.ssh/config</span><br><span class="line"></span><br><span class="line"><span class="comment"># 测试连接</span></span><br><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p><strong>🚨 如果仍然失败</strong></p>
+<p><strong>可能原因</strong></p>
+<ol>
+<li><strong>系统代理/VPN 仍在干扰</strong>（即使 <code>env | grep proxy</code> 无输出）。</li>
+<li><strong>Windows 防火墙/杀毒软件阻止了所有 SSH 连接</strong>。</li>
+<li><strong>路由器/ISP 完全封锁了 SSH 端口</strong>。</li>
+</ol>
+<p><strong>解决方案</strong></p>
+<ol>
+<li><p><strong>临时关闭所有安全软件</strong>（包括 Windows Defender 防火墙）。</p>
+</li>
+<li><p><strong>尝试手机热点 + 公共 DNS（8.8.8.8）</strong>。</p>
+</li>
+<li><p><strong>终极方案</strong>：改用 HTTPS 协议：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote set-url origin https://github.com/你的用户名/仓库名.git</span><br></pre></td></tr></table></figure></li>
+</ol>
+<hr>
+<p><strong>📌 验证结果</strong></p>
+<p>请提供以下命令的新输出：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">nslookup github.com</span><br><span class="line"><span class="built_in">cat</span> ~/.ssh/config</span><br><span class="line">ssh -vT git@github.com</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="用户反馈问题4"><a href="#用户反馈问题4" class="headerlink" title="用户反馈问题4"></a>用户反馈问题4</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">SUN@DESKTOP-GD2JGT5 MINGW64 ~/Desktop (master)</span><br><span class="line">$ ssh-keygen -R ssh.github.com</span><br><span class="line">Host ssh.github.com not found <span class="keyword">in</span> /c/Users/SUN/.ssh/known_hosts</span><br><span class="line"></span><br><span class="line">SUN@DESKTOP-GD2JGT5 MINGW64 ~/Desktop (master)</span><br><span class="line">$ <span class="built_in">echo</span> -e <span class="string">"Host github.com\n  Hostname ssh.github.com\n  Port 443\n  User git"</span> &gt; ~/.ssh/config</span><br><span class="line"></span><br><span class="line">SUN@DESKTOP-GD2JGT5 MINGW64 ~/Desktop (master)</span><br><span class="line">$ ssh -T git@github.com</span><br><span class="line">ssh: connect to host ssh.github.com port 443: Connection timed out</span><br><span class="line">验证结果：</span><br><span class="line">SUN@DESKTOP-GD2JGT5 MINGW64 ~/Desktop (master)</span><br><span class="line">$ nslookup github.com</span><br><span class="line">服务器:  dns.google</span><br><span class="line">Address:  8.8.8.8</span><br><span class="line"></span><br><span class="line">非权威应答:</span><br><span class="line">名称:    github.com</span><br><span class="line">Address:  20.205.243.166</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">SUN@DESKTOP-GD2JGT5 MINGW64 ~/Desktop (master)</span><br><span class="line">$ <span class="built_in">cat</span> ~/.ssh/config</span><br><span class="line">Host github.com</span><br><span class="line">  Hostname ssh.github.com</span><br><span class="line">  Port 443</span><br><span class="line">  User git</span><br><span class="line"></span><br><span class="line">SUN@DESKTOP-GD2JGT5 MINGW64 ~/Desktop (master)</span><br><span class="line">$ ssh -vT git@github.com</span><br><span class="line">OpenSSH_9.9p2, OpenSSL 3.2.4 11 Feb 2025</span><br><span class="line">debug1: Reading configuration data /c/Users/SUN/.ssh/config</span><br><span class="line">debug1: /c/Users/SUN/.ssh/config line 1: Applying options <span class="keyword">for</span> github.com</span><br><span class="line">debug1: Reading configuration data /etc/ssh/ssh_config</span><br><span class="line">debug1: Connecting to ssh.github.com [140.82.121.36] port 443.</span><br><span class="line">debug1: connect to address 140.82.121.36 port 443: Connection timed out</span><br><span class="line">ssh: connect to host ssh.github.com port 443: Connection timed out</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="deepseek输出解决方案5"><a href="#deepseek输出解决方案5" class="headerlink" title="deepseek输出解决方案5"></a>deepseek输出解决方案5</h2><p>从最新的测试结果来看，虽然DNS解析已经恢复正常（<code>github.com</code>正确解析到<code>20.205.243.166</code>），但SSH连接仍然超时。这表明问题可能出在：</p>
+<p><strong>🛠️ 深度解决方案</strong></p>
+<p><strong>1.检查网络连通性</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ping 20.205.243.166</span><br><span class="line">telnet 20.205.243.166 443</span><br></pre></td></tr></table></figure>
+
+<p>如果ping通但telnet失败，说明443端口被阻断</p>
+<p><strong>2.临时关闭所有防火墙</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netsh advfirewall <span class="built_in">set</span> allprofiles state off</span><br></pre></td></tr></table></figure>
+
+<p><strong>3.尝试使用GitHub备用IP</strong><br>修改<code>~/.ssh/config</code>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> -e <span class="string">"Host github.com\n  Hostname 20.205.243.166\n  Port 443\n  User git"</span> &gt; ~/.ssh/config</span><br></pre></td></tr></table></figure>
+
+<p><strong>4.测试原始22端口</strong><br>临时修改配置：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -i <span class="string">'s/Port 443/Port 22/'</span> ~/.ssh/config</span><br></pre></td></tr></table></figure>
+
+<p><strong>5.使用curl测试API连通性</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -v https://api.github.com</span><br></pre></td></tr></table></figure>
+
+<p><strong>🔍 关键诊断点</strong></p>
+<p>从你的<code>ssh -vT</code>输出可以看到：</p>
+<ul>
+<li>正确读取了配置（使用443端口）</li>
+<li>尝试连接的是<code>140.82.121.36</code>（不是DNS返回的IP）</li>
+<li>出现连接超时</li>
+</ul>
+<p>建议：</p>
+<ol>
+<li>确认你的网络是否允许出站443端口</li>
+<li>尝试其他网络环境（如手机热点）</li>
+<li>检查路由器/公司网络是否有限制</li>
+</ol>
+<p>请提供以下新测试结果：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ping 20.205.243.166</span><br><span class="line">telnet 20.205.243.166 443</span><br><span class="line">curl -v https://api.github.com</span><br></pre></td></tr></table></figure>
+
+<p>如果所有方法都失败，建议：</p>
+<ol>
+<li>使用Git over HTTPS</li>
+<li>联系网络管理员检查出站限制</li>
+<li>在另一台设备上测试相同网络环境</li>
+</ol>
+<h2 id="用户反馈问题5"><a href="#用户反馈问题5" class="headerlink" title="用户反馈问题5"></a>用户反馈问题5</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">SUN@DESKTOP-GD2JGT5 MINGW64 ~/Desktop (master)</span><br><span class="line">$ ping 20.205.243.166</span><br><span class="line">telnet 20.205.243.166 443</span><br><span class="line"></span><br><span class="line">正在 Ping 20.205.243.166 具有 32 字节的数据:</span><br><span class="line">来自 20.205.243.166 的回复: 字节=32 时间=91ms TTL=114</span><br><span class="line">来自 20.205.243.166 的回复: 字节=32 时间=87ms TTL=114</span><br><span class="line">来自 20.205.243.166 的回复: 字节=32 时间=91ms TTL=114</span><br><span class="line">来自 20.205.243.166 的回复: 字节=32 时间=92ms TTL=114</span><br><span class="line"></span><br><span class="line">20.205.243.166 的 Ping 统计信息:</span><br><span class="line">    数据包: 已发送 = 4，已接收 = 4，丢失 = 0 (0% 丢失)，</span><br><span class="line">往返行程的估计时间(以毫秒为单位):</span><br><span class="line">    最短 = 87ms，最长 = 92ms，平均 = 90ms</span><br><span class="line">bash: telnet: <span class="built_in">command</span> not found</span><br><span class="line"></span><br><span class="line">SUN@DESKTOP-GD2JGT5 MINGW64 ~/Desktop (master)</span><br><span class="line">$ <span class="built_in">echo</span> -e <span class="string">"Host github.com\n  Hostname 20.205.243.166\n  Port 443\n  User git"</span> &gt; ~/.ssh/config</span><br><span class="line"></span><br><span class="line">SUN@DESKTOP-GD2JGT5 MINGW64 ~/Desktop (master)</span><br><span class="line">$ sed -i <span class="string">'s/Port 443/Port 22/'</span> ~/.ssh/config</span><br><span class="line"></span><br><span class="line">SUN@DESKTOP-GD2JGT5 MINGW64 ~/Desktop (master)</span><br><span class="line">$ curl -v https://api.github.com</span><br><span class="line">* Host api.github.com:443 was resolved.</span><br><span class="line">* IPv6: ::1</span><br><span class="line">* IPv4: 127.0.0.1</span><br><span class="line">*   Trying [::1]:443...</span><br><span class="line">*   Trying 127.0.0.1:443...</span><br><span class="line">* connect to ::1 port 443 from :: port 59692 failed: Connection refused</span><br><span class="line">* connect to 127.0.0.1 port 443 from 0.0.0.0 port 59693 failed: Connection refus</span><br><span class="line">ed</span><br><span class="line">* Failed to connect to api.github.com port 443 after 2282 ms: Could not connect</span><br><span class="line">to server</span><br><span class="line">* closing connection <span class="comment">#0</span></span><br><span class="line">curl: (7) Failed to connect to api.github.com port 443 after 2282 ms: Could not</span><br><span class="line">connect to server</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="彻底修复DNS劫持"><a href="#彻底修复DNS劫持" class="headerlink" title="彻底修复DNS劫持"></a>彻底修复DNS劫持</h1><h2 id="deepseek输出解决方案6"><a href="#deepseek输出解决方案6" class="headerlink" title="deepseek输出解决方案6"></a>deepseek输出解决方案6</h2><p>根据最新的测试结果，我们可以确认几个关键问题：</p>
+<h3 id="🌟-最终问题诊断"><a href="#🌟-最终问题诊断" class="headerlink" title="🌟 最终问题诊断"></a>🌟 最终问题诊断</h3><ol>
+<li><p><strong>网络连接异常</strong>：</p>
+<ul>
+<li>能ping通GitHub IP（20.205.243.166）</li>
+<li>但所有HTTPS/SSH连接都被重定向到本地（127.0.0.1/::1）</li>
+<li>这是典型的<strong>DNS劫持</strong>或<strong>系统代理劫持</strong>现象</li>
+</ul>
+</li>
+<li><p><strong>关键证据</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">curl -v https://api.github.com</span><br><span class="line"><span class="comment"># 解析结果：</span></span><br><span class="line"><span class="comment"># IPv6: ::1</span></span><br><span class="line"><span class="comment"># IPv4: 127.0.0.1</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="🛠️-终极解决方案"><a href="#🛠️-终极解决方案" class="headerlink" title="🛠️ 终极解决方案"></a>🛠️ 终极解决方案</h3><h4 id="1-彻底修复DNS劫持"><a href="#1-彻底修复DNS劫持" class="headerlink" title="1. 彻底修复DNS劫持"></a>1. <strong>彻底修复DNS劫持</strong></h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1. 以管理员身份编辑hosts文件</span></span><br><span class="line">notepad C:\Windows\System32\drivers\etc\hosts</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 删除所有github相关条目</span></span><br><span class="line"><span class="comment"># 3. 添加以下内容（使用最新IP）：</span></span><br><span class="line">20.205.243.166 github.com</span><br><span class="line">20.205.243.166 api.github.com</span><br><span class="line">20.205.243.166 ssh.github.com</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4. 刷新DNS</span></span><br><span class="line">ipconfig /flushdns</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-禁用系统代理"><a href="#2-禁用系统代理" class="headerlink" title="2. 禁用系统代理"></a>2. <strong>禁用系统代理</strong></h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 清除所有代理设置</span></span><br><span class="line">netsh winhttp reset proxy</span><br><span class="line">git config --global --<span class="built_in">unset</span> http.proxy</span><br><span class="line">git config --global --<span class="built_in">unset</span> https.proxy</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-验证网络修复"><a href="#3-验证网络修复" class="headerlink" title="3. 验证网络修复"></a>3. <strong>验证网络修复</strong></h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">nslookup github.com</span><br><span class="line">curl -v https://api.github.com</span><br><span class="line"><span class="comment"># 现在应该看到正确的IP（20.205.243.166）而非127.0.0.1</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="4-最终SSH测试"><a href="#4-最终SSH测试" class="headerlink" title="4. 最终SSH测试"></a>4. <strong>最终SSH测试</strong></h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure>
+
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://example.com">ZXH</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2025/04/23/github%20DNS%E5%8A%AB%E6%8C%81/">http://example.com/2025/04/23/github%20DNS%E5%8A%AB%E6%8C%81/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">Ψ(￣∀￣)ΨZHX的小窝</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/git/">git</a></div><div class="post_share"><div class="social-share" data-image="/./image/cover_img/18.jfif" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2025/04/20/HEXO%E9%AD%94%E6%94%B9%E6%97%A5%E5%BF%97/"><img class="next-cover" src="/./image/cover_img/17.jfif" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">HEXO 魔改日志</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/./image/top_img/avater.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">ZXH</div><div class="author-info__description">这是一个我的博客</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">14</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Nshuai" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:1436552381@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E5%B0%86github-com%E9%94%99%E8%AF%AF%E8%A7%A3%E6%9E%90%E5%88%B0%E6%9C%AC%E5%9C%B0%E5%9C%B0%E5%9D%80-%E4%BF%AE%E5%A4%8DDNS%E5%8A%AB%E6%8C%81"><span class="toc-number">1.</span> <span class="toc-text">系统将github.com错误解析到本地地址&amp;修复DNS劫持</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8%E6%88%B7%E8%BE%93%E5%85%A5%E9%97%AE%E9%A2%981%EF%BC%9A"><span class="toc-number">1.1.</span> <span class="toc-text">用户输入问题1：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#deepseek%E8%BE%93%E5%87%BA%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%881%EF%BC%9A"><span class="toc-number">1.2.</span> <span class="toc-text">deepseek输出解决方案1：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8%E6%88%B7%E5%8F%8D%E9%A6%88%E9%97%AE%E9%A2%982%EF%BC%9A"><span class="toc-number">1.3.</span> <span class="toc-text">用户反馈问题2：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#deepseek%E8%BE%93%E5%87%BA%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%882%EF%BC%9A"><span class="toc-number">1.4.</span> <span class="toc-text">deepseek输出解决方案2：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8%E6%88%B7%E5%8F%8D%E9%A6%88%E9%97%AE%E9%A2%983%EF%BC%9A"><span class="toc-number">1.5.</span> <span class="toc-text">用户反馈问题3：</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%80%9A%E8%BF%87deepseek%E8%A7%A3%E6%9E%90%E9%97%AE%E9%A2%98%EF%BC%9A%E4%BD%A0%E7%9A%84%E7%B3%BB%E7%BB%9F%E5%B0%86-github-com-%E9%94%99%E8%AF%AF%E8%A7%A3%E6%9E%90%E5%88%B0%E4%BA%86%E6%9C%AC%E5%9C%B0%E5%9C%B0%E5%9D%80%EF%BC%88-1-%E5%92%8C-127-0-0-1%EF%BC%89"><span class="toc-number">2.</span> <span class="toc-text">通过deepseek解析问题：你的系统将 github.com 错误解析到了本地地址（::1 和 127.0.0.1）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#deepseek%E8%BE%93%E5%87%BA%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%884"><span class="toc-number">2.1.</span> <span class="toc-text">deepseek输出解决方案4</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8%E6%88%B7%E5%8F%8D%E9%A6%88%E9%97%AE%E9%A2%984"><span class="toc-number">2.2.</span> <span class="toc-text">用户反馈问题4</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#deepseek%E8%BE%93%E5%87%BA%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%885"><span class="toc-number">2.3.</span> <span class="toc-text">deepseek输出解决方案5</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8%E6%88%B7%E5%8F%8D%E9%A6%88%E9%97%AE%E9%A2%985"><span class="toc-number">2.4.</span> <span class="toc-text">用户反馈问题5</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BD%BB%E5%BA%95%E4%BF%AE%E5%A4%8DDNS%E5%8A%AB%E6%8C%81"><span class="toc-number">3.</span> <span class="toc-text">彻底修复DNS劫持</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#deepseek%E8%BE%93%E5%87%BA%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%886"><span class="toc-number">3.1.</span> <span class="toc-text">deepseek输出解决方案6</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%8C%9F-%E6%9C%80%E7%BB%88%E9%97%AE%E9%A2%98%E8%AF%8A%E6%96%AD"><span class="toc-number">3.1.1.</span> <span class="toc-text">🌟 最终问题诊断</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%9B%A0%EF%B8%8F-%E7%BB%88%E6%9E%81%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-number">3.1.2.</span> <span class="toc-text">🛠️ 终极解决方案</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%BD%BB%E5%BA%95%E4%BF%AE%E5%A4%8DDNS%E5%8A%AB%E6%8C%81"><span class="toc-number">3.1.2.1.</span> <span class="toc-text">1. 彻底修复DNS劫持</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E7%A6%81%E7%94%A8%E7%B3%BB%E7%BB%9F%E4%BB%A3%E7%90%86"><span class="toc-number">3.1.2.2.</span> <span class="toc-text">2. 禁用系统代理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E9%AA%8C%E8%AF%81%E7%BD%91%E7%BB%9C%E4%BF%AE%E5%A4%8D"><span class="toc-number">3.1.2.3.</span> <span class="toc-text">3. 验证网络修复</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E6%9C%80%E7%BB%88SSH%E6%B5%8B%E8%AF%95"><span class="toc-number">3.1.2.4.</span> <span class="toc-text">4. 最终SSH测试</span></a></li></ol></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/04/23/github%20DNS%E5%8A%AB%E6%8C%81/" title="系统将github.com错误解析到本地地址&amp;修复DNS劫持"><img src="/./image/cover_img/18.jfif" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="系统将github.com错误解析到本地地址&amp;修复DNS劫持"/></a><div class="content"><a class="title" href="/2025/04/23/github%20DNS%E5%8A%AB%E6%8C%81/" title="系统将github.com错误解析到本地地址&amp;修复DNS劫持">系统将github.com错误解析到本地地址&amp;修复DNS劫持</a><time datetime="2025-04-22T16:00:00.000Z" title="发表于 2025-04-23 00:00:00">2025-04-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/04/20/HEXO%E9%AD%94%E6%94%B9%E6%97%A5%E5%BF%97/" title="HEXO 魔改日志"><img src="/./image/cover_img/17.jfif" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="HEXO 魔改日志"/></a><div class="content"><a class="title" href="/2025/04/20/HEXO%E9%AD%94%E6%94%B9%E6%97%A5%E5%BF%97/" title="HEXO 魔改日志">HEXO 魔改日志</a><time datetime="2025-04-19T16:00:00.000Z" title="发表于 2025-04-20 00:00:00">2025-04-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/04/08/C%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8/" title="从零开始学C语言"><img src="/./image/cover_img/21.jfif" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="从零开始学C语言"/></a><div class="content"><a class="title" href="/2025/04/08/C%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8/" title="从零开始学C语言">从零开始学C语言</a><time datetime="2025-04-07T16:00:00.000Z" title="发表于 2025-04-08 00:00:00">2025-04-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/04/07/10&amp;11&amp;12.%E4%B8%80%E5%85%83%E5%87%BD%E6%95%B0%E7%A7%AF%E5%88%86%E5%AD%A6%E7%9A%84%E5%BA%94%E7%94%A8/" title="考研数学_10&amp;11&amp;12.一元函数积分学的应用"><img src="/./image/cover_img/11.jfif" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="考研数学_10&amp;11&amp;12.一元函数积分学的应用"/></a><div class="content"><a class="title" href="/2025/04/07/10&amp;11&amp;12.%E4%B8%80%E5%85%83%E5%87%BD%E6%95%B0%E7%A7%AF%E5%88%86%E5%AD%A6%E7%9A%84%E5%BA%94%E7%94%A8/" title="考研数学_10&amp;11&amp;12.一元函数积分学的应用">考研数学_10&amp;11&amp;12.一元函数积分学的应用</a><time datetime="2025-04-06T16:00:00.000Z" title="发表于 2025-04-07 00:00:00">2025-04-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/03/27/8&amp;9.%E4%B8%80%E5%85%83%E5%87%BD%E6%95%B0%E7%A7%AF%E5%88%86%E5%AD%A6%E7%9A%84%E6%A6%82%E5%BF%B5%E4%B8%8E%E8%AE%A1%E7%AE%97/" title="考研数学_8&amp;9.一元函数积分学的概念与计算"><img src="/./image/cover_img/10.jfif" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="考研数学_8&amp;9.一元函数积分学的概念与计算"/></a><div class="content"><a class="title" href="/2025/03/27/8&amp;9.%E4%B8%80%E5%85%83%E5%87%BD%E6%95%B0%E7%A7%AF%E5%88%86%E5%AD%A6%E7%9A%84%E6%A6%82%E5%BF%B5%E4%B8%8E%E8%AE%A1%E7%AE%97/" title="考研数学_8&amp;9.一元函数积分学的概念与计算">考研数学_8&amp;9.一元函数积分学的概念与计算</a><time datetime="2025-03-26T16:00:00.000Z" title="发表于 2025-03-27 00:00:00">2025-03-27</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025 By ZXH</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"></div><script src="/js/script.js"></script><script src="/js/categoryBar.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start -->
+      <script data-pjax>
+        if (typeof window.recommend === 'undefined') {
+          window.recommend = {
+            hexo_butterfly_recommend_init: function() {
+              const $recommend = document.querySelector('#recommend');
+              if($recommend) return;
+              document.documentElement.style.setProperty('--recommend-main', '#409eff');
+              document.documentElement.style.setProperty('--recommend-deep', '#0075ffdd');
+              const hexo_butterfly_recommend_elist = 'null'.split(',');
+              var hexo_butterfly_recommend_cpage = location.pathname;
+              const hexo_butterfly_recommend_epage = '/';
+              var hexo_butterfly_recommend_flag = 0;
+        
+              for (var i = 0; i < hexo_butterfly_recommend_elist.length; i++) {
+                if (hexo_butterfly_recommend_cpage.includes(hexo_butterfly_recommend_elist[i])) {
+                  hexo_butterfly_recommend_flag++;
+                }
+              }
+              if ((hexo_butterfly_recommend_epage === 'all') && (hexo_butterfly_recommend_flag === 0)) {
+                window.recommend.hexo_butterfly_recommend_injector_config();
+              } else if (hexo_butterfly_recommend_epage === hexo_butterfly_recommend_cpage) {
+                window.recommend.hexo_butterfly_recommend_injector_config();
+              }
+            },
+            hexo_butterfly_recommend_injector_config: function() {
+              var parent_div_git = document.getElementById('content-inner');
+              var item_html = '<div class="recommend-right" id="recommend"><div id="recommend-content" onmousewheel="recommend.postScroll(this)"><div class="recommend-wrapper" id="recommend-banner"><div id="recommend-banner-wrapper"><div class="recommend-banner-title-wrapper"><div class="recommend-banner-title">君子终日乾乾</div><div class="recommend-banner-title">夕惕若厉</div><div class="recommend-banner-title">无咎</div><div class="recommend-banner-title"></div></div><div class="recommend-tags-all"><div class="recommend-tags-wrapper"><div class="recommend-tags-line"><div class="recommend-tags-column"><div class="recommend-tags-icon" style="background: #e9572b"><i class="fa-brands fa-html5" style="color: #fff"></i></div></div><div class="recommend-tags-column"><div class="recommend-tags-icon" style="background: #f7cb4f"><i class="fa-brands fa-js" style="color: #fff"></i></div></div><div class="recommend-tags-column"><div class="recommend-tags-icon" style="background: #563e7c"><i class="fa-brands fa-cuttlefish" style="color: #fff"></i></div></div><div class="recommend-tags-column"><div class="recommend-tags-icon" style="background: #37322e"><i class="fa-brands fa-node" style="color: #7dbd05"></i></div></div><div class="recommend-tags-column"><div class="recommend-tags-icon" style="background: #e9572b"><i class="fa-brands fa-html5" style="color: #fff"></i></div></div><div class="recommend-tags-column"><div class="recommend-tags-icon" style="background: #f7cb4f"><i class="fa-brands fa-js" style="color: #fff"></i></div></div><div class="recommend-tags-column"><div class="recommend-tags-icon" style="background: #563e7c"><i class="fa-brands fa-cuttlefish" style="color: #fff"></i></div></div><div class="recommend-tags-column"><div class="recommend-tags-icon" style="background: #37322e"><i class="fa-brands fa-node" style="color: #7dbd05"></i></div></div><div class="recommend-tags-column"><div class="recommend-tags-icon" style="background: #e9572b"><i class="fa-brands fa-html5" style="color: #fff"></i></div></div><div class="recommend-tags-column"><div class="recommend-tags-icon" style="background: #f7cb4f"><i class="fa-brands fa-js" style="color: #fff"></i></div></div><div class="recommend-tags-column"><div class="recommend-tags-icon" style="background: #563e7c"><i class="fa-brands fa-cuttlefish" style="color: #fff"></i></div></div><div class="recommend-tags-column"><div class="recommend-tags-icon" style="background: #37322e"><i class="fa-brands fa-node" style="color: #7dbd05"></i></div></div></div><div class="recommend-tags-line"><div class="recommend-tags-column"><div class="recommend-tags-icon" style="background: #2c51db"><i class="fa-brands fa-css3-alt" style="color: #fff"></i></div></div><div class="recommend-tags-column"><div class="recommend-tags-icon" style="background: #ca6496"><i class="fa-brands fa-python" style="color: #fff"></i></div></div><div class="recommend-tags-column"><div class="recommend-tags-icon" style="background: #42b883"><i class="fa-brands fa-vuejs" style="color: #fff"></i></div></div><div class="recommend-tags-column"><div class="recommend-tags-icon" style="background: #df5b40"><i class="fa-brands fa-git-alt" style="color: #fff"></i></div></div><div class="recommend-tags-column"><div class="recommend-tags-icon" style="background: #2c51db"><i class="fa-brands fa-css3-alt" style="color: #fff"></i></div></div><div class="recommend-tags-column"><div class="recommend-tags-icon" style="background: #ca6496"><i class="fa-brands fa-python" style="color: #fff"></i></div></div><div class="recommend-tags-column"><div class="recommend-tags-icon" style="background: #42b883"><i class="fa-brands fa-vuejs" style="color: #fff"></i></div></div><div class="recommend-tags-column"><div class="recommend-tags-icon" style="background: #df5b40"><i class="fa-brands fa-git-alt" style="color: #fff"></i></div></div><div class="recommend-tags-column"><div class="recommend-tags-icon" style="background: #2c51db"><i class="fa-brands fa-css3-alt" style="color: #fff"></i></div></div><div class="recommend-tags-column"><div class="recommend-tags-icon" style="background: #ca6496"><i class="fa-brands fa-python" style="color: #fff"></i></div></div><div class="recommend-tags-column"><div class="recommend-tags-icon" style="background: #42b883"><i class="fa-brands fa-vuejs" style="color: #fff"></i></div></div><div class="recommend-tags-column"><div class="recommend-tags-icon" style="background: #df5b40"><i class="fa-brands fa-git-alt" style="color: #fff"></i></div></div></div></div></div><a id="recommend-banner-hover" onclick="recommend.toRandomPost()"><span class="recommend-banner-text">随便逛逛</span><i class="fas fa-arrow-right recommend-banner-righticon"></i></a></div><div id="recommend-category"><div class="recommend-categoryItem"><a class="recommend-categoryItem-button" onclick="recommend.toPost(&quot;categories/精选&quot;)"><div class="recommend-categoryItem-bg" style="background: linear-gradient(to right, #358bff, #15c6ff)"></div><span class="recommend-categoryItem-text">必看精选</span><i class="fa-solid fa-star"></i></a></div><div class="recommend-categoryItem"><a class="recommend-categoryItem-button" onclick="recommend.toPost(&quot;categories/热门&quot;)"><div class="recommend-categoryItem-bg" style="background: linear-gradient(to right, #f65, #ffbf37)"></div><span class="recommend-categoryItem-text">热门文章</span><i class="fa-solid fa-fire"></i></a></div><div class="recommend-categoryItem"><a class="recommend-categoryItem-button" onclick="recommend.toPost(&quot;categories/资源&quot;)"><div class="recommend-categoryItem-bg" style="background: linear-gradient(to right, #18e7ae, #1eebeb)"></div><span class="recommend-categoryItem-text">优质资源</span><i class="fa-solid fa-gem"></i></a></div></div></div><div class="recommend-wrapper" id="recommend-post"><div class="recommend-post-main" id="recommend-post-main"><div class="recommend-post-cover" onclick="recommend.toPost(&quot;2025/04/08/C语言入门/&quot;)" style="background: var(--recommend-main) url(/image/cover_default.png) no-repeat center/cover"></div><div class="recommend-post-cover-wrapper"><div class="recommend-post-cover-info" onclick="recommend.toPost(&quot;2025/04/08/C语言入门/&quot;)"><div class="recommend-post-cover-subTitle">2025/4/8 00:00:00</div><div class="recommend-post-cover-title">人生苦短，我用python</div></div><div class="recommend-post-cover-more" onclick="window.event.cancelBubble=true;recommend.hideCover();"><div class="recommend-post-cover-more-bg"></div><i class="fa-solid fa-circle-plus"></i><span>更多推荐</span></div></div></div><div class="recommend-post-list" onmouseleave="window.event.cancelBubble=true;recommend.showCover();"><div class="recommend-post-item"><div class="recommend-post-item-cover" onclick="recommend.toPost(&quot;2022/09/11/Hello World/&quot;)"><img src="./image/cover_img/1.jfif" onerror="this.onerror=null,this.src=&quot;/img/404.png&quot;" title="Hello World"/></div><div class="recommend-post-item-title" onclick="recommend.toPost(&quot;2022/09/11/Hello World/&quot;)" title="Hello World">Hello World</div></div><div class="recommend-post-item"><div class="recommend-post-item-cover" onclick="recommend.toPost(&quot;2022/09/12/前端开篇/&quot;)"><img src="./image/cover_img/3.jfif" onerror="this.onerror=null,this.src=&quot;/img/404.png&quot;" title="前端开篇"/></div><div class="recommend-post-item-title" onclick="recommend.toPost(&quot;2022/09/12/前端开篇/&quot;)" title="前端开篇">前端开篇</div></div><div class="recommend-post-item"><div class="recommend-post-item-cover" onclick="recommend.toPost(&quot;2025/04/23/github DNS劫持/&quot;)"><img src="./image/cover_img/18.jfif" onerror="this.onerror=null,this.src=&quot;/img/404.png&quot;" title="系统将github.com错误解析到本地地址&amp;修复DNS劫持"/></div><div class="recommend-post-item-title" onclick="recommend.toPost(&quot;2025/04/23/github DNS劫持/&quot;)" title="系统将github.com错误解析到本地地址&amp;修复DNS劫持">系统将github.com错误解析到本地地址&amp;修复DNS劫持</div></div><div class="recommend-post-item"><div class="recommend-post-item-cover" onclick="recommend.toPost(&quot;2025/04/08/C语言入门/&quot;)"><img src="./image/cover_img/21.jfif" onerror="this.onerror=null,this.src=&quot;/img/404.png&quot;" title="从零开始学C语言"/></div><div class="recommend-post-item-title" onclick="recommend.toPost(&quot;2025/04/08/C语言入门/&quot;)" title="从零开始学C语言">从零开始学C语言</div></div><div class="recommend-post-item"><div class="recommend-post-item-cover" onclick="recommend.toPost(&quot;2022/09/12/HTML/&quot;)"><img src="./image/cover_img/2.jfif" onerror="this.onerror=null,this.src=&quot;/img/404.png&quot;" title="前端_HTML"/></div><div class="recommend-post-item-title" onclick="recommend.toPost(&quot;2022/09/12/HTML/&quot;)" title="前端_HTML">前端_HTML</div></div><div class="recommend-post-item"><div class="recommend-post-item-cover" onclick="recommend.toPost(&quot;2025/04/20/HEXO魔改日志/&quot;)"><img src="./image/cover_img/17.jfif" onerror="this.onerror=null,this.src=&quot;/img/404.png&quot;" title="HEXO 魔改日志"/></div><div class="recommend-post-item-title" onclick="recommend.toPost(&quot;2025/04/20/HEXO魔改日志/&quot;)" title="HEXO 魔改日志">HEXO 魔改日志</div></div></div></div></div></div>';
+              parent_div_git.insertAdjacentHTML("afterbegin",item_html);
+            },
+            toRandomPost: function() {
+              var posts_path = "2024/03/24/0.基础知识扫盲/,2024/03/31/1.函数极限与连续/,2024/04/08/2.数列极限/,2025/04/07/10&11&12.一元函数积分学的应用/,2024/04/15/3&4.一元函数微分学的概念与计算/,2025/03/11/5&6&7.一元函数微分学的应用/,2025/03/27/8&9.一元函数积分学的概念与计算/,2022/09/28/CSS/,2025/04/20/HEXO魔改日志/,2022/09/12/HTML/,2025/04/08/C语言入门/,2025/04/23/github DNS劫持/,2022/09/12/前端开篇/,2022/09/11/Hello World/".split(',');
+              var randomPost = posts_path[Math.floor(Math.random() * posts_path.length)];
+              window.recommend.toPost(randomPost);
+            },
+            toPost: function(href) {
+              if (typeof pjax !== 'undefined') pjax.loadUrl('/' + href);
+              else window.location.href = window.location.origin + (href.charAt(0) === '/' ? '' : '/') + href;
+            },
+            hideCover: function() {
+              const $main = document.querySelector("#recommend-post-main");
+              $main.className = 'recommend-post-main recommend-hide';
+            },
+            showCover: function() {
+              const $main = document.querySelector("#recommend-post-main");
+              if ($main) $main.className = 'recommend-post-main';
+            },
+            postScroll: function(dom) {
+              const e = window.event || arguments.callee.caller.arguments[0];
+              if (document.body.clientWidth <= 1200) {
+                let o = -e.wheelDelta / 2;
+                dom.scrollLeft += o;
+                e.preventDefault();
+              }
+            }
+          }
+          console.log(
+            "%c plugin ⭐ hexo_butterfly_recommend ⭐ https://github.com/weizwz/hexo-butterfly-recommend ",
+            "color: #fff; padding:3px; font-size:12px; background: linear-gradient(90deg, #358bff, #1eebeb);"
+          )
+        }
+        window.recommend.hexo_butterfly_recommend_init();
+      </script><script data-pjax>
+  function butterfly_clock_anzhiyu_injector_config(){
+    var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+    var item_html = '<div class="card-widget card-clock"><div class="card-glass"><div class="card-background"><div class="card-content"><div id="hexo_electric_clock"><img class="entered loading" id="card-clock-loading" src="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu@1.0.6/lib/loading.gif" style="height: 120px; width: 100%;" data-ll-status="loading"/></div></div></div></div></div>';
+    console.log('已挂载butterfly_clock_anzhiyu')
+    parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  var elist = 'null'.split(',');
+  var cpage = location.pathname;
+  var epage = '/';
+  var qweather_key = '4c88abf11f4c4d7b99f46452a924298a';
+  var gaud_map_key = '711981ad6e0ff53e93ddbf5e762a722d';
+  var baidu_ak_key = 'undefined';
+  var flag = 0;
+  var clock_rectangle = '112.6534116,27.96920845';
+  var clock_default_rectangle_enable = 'false';
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_clock_anzhiyu_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_clock_anzhiyu_injector_config();
+  }
+  </script><script src="https://widget.qweather.net/simple/static/js/he-simple-common.js?v=2.0"></script><script data-pjax src="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu@1.0.6/lib/clock.min.js"></script><!-- hexo injector body_end end --></body></html>
